@@ -6,7 +6,7 @@ import pickle
 
 def process_data(data):
     #data = pd.read_csv('data.csv')
-    path = 'C:/Users/Alfred/flask_programming_projects/machine_learning_webpage/housing_project/'
+    path = '/code/housing_project/'
     median_imputer = pickle.load(open(path + 'housing_median_imputer', 'rb'))
     mode_imputer = pickle.load(open(path + 'housing_mode_imputer', 'rb'))
     encoder = pickle.load(open(path + 'housing_encoder', 'rb'))
@@ -25,7 +25,7 @@ def process_data(data):
     return data
 
 def predict(data):
-    path = 'C:/Users/Alfred/flask_programming_projects/machine_learning_webpage/housing_project/'
+    path = '/code/housing_project/'
     model = pickle.load(open(path + 'ridge', 'rb'))
     predictions = pd.DataFrame(np.exp(model.predict(data)), columns=['SalePrice'])
     predictions = predictions.round(0)
