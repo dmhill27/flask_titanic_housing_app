@@ -1,1 +1,1 @@
-#deployment of machine learning projects using Flask
+Deployment of Kaggle data science projects using Flask
