@@ -36,20 +36,5 @@ def titanic():
 def titanic_download():
     return send_file('predictions_titanic.csv', attachment_filename='predictions_titanic.csv')
 
-'''
-@app.route('/housing', methods=['GET','POST'])
-def housing():
-    if request.method == 'POST':
-        data = pd.read_csv(request.files.get('input_csv'))
-        data = housing_run(data)
-        return render_template('result.html', data=data.to_html(justify='left', classes='table table-striped table-bordered table-hover table-sm'))
-    return render_template('housing.html')
-
-@app.route('/result', methods=['POST'])
-def result():
-    data = pd.read_csv(request.files.get('input_csv'))
-    data = housing_run(data)
-    return render_template('result.html', data=data.to_html(justify='left', classes='table table-striped table-bordered table-hover table-sm'))
-'''
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=80)
