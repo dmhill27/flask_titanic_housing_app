@@ -1,41 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class='container'>
-    <div class='p-2 w-100 mx-auto mt-2 d-flex flex-row border border-secondary rounded shadow-lg' style='height:30em;'>
-        <form class='p-2 w-50 h-100 d-flex flex-column justify-content-start align-items-center border shadow-sm' style='height:20em;' action='/titanic' method='POST' enctype="multipart/form-data">
-            <div class='p-5 w-100 h-100 text-center bg-light '>
-                <div class='container h-75'>
-                    <h1 class='mb-2 page-header'>Titanic Survival Classification</h1> 
-                    <h6 class='mt-2 mb-5'>Predict Titanic Survival using AI</h6>
-                    <div class='p-2 mt-5 form-group'>
-                        <input type='file' class='form-control form-control-lg' name='input_csv_titanic' placeholder='Upload CSV'>
-                        <p class='mt-1 help-block text-center text-secondary'>Only csv files allowed</p>
-                    </div>
-                </div>
-                <div class='mt-3 h-25 d-flex justify-content-center container'>
-                    <button type='submit' class='w-50 align-self-center btn btn-primary btn-lg'>Submit</button>
-                </div>
+    <div class='p-5 bg-light text-center'  style='height:30em;'>
+        <h1>Logistic Regression</h1>
+        <p>Predict Titanic Passenger Surival with Machine Learning</p>
+        <br>
+        {% if not data %}
+        <form action='/titanic' method='POST' enctype="multipart/form-data">
+            <div class='form-group'>
+                <input type='file' class='form-control' name='input_csv_titanic' placeholder='Upload'>
+                <p class='help-block text-left'>csv files only</p>
+                <input class='btn btn-primary btn-large' type='submit' value='Submit'>
             </div>
-            
         </form>
-        {% if data %}
-        <div class='p-2 w-50 h-100 d-flex flex-column justify-content-start align-items-center border sshadow-sm'>
-            <div class='p-5 w-100 h-100 text-center bg-light'>
-                <div class='h-75 container'>
-                    <div class='p-2 h-100 table-responsive border w-100' style='overflow:auto;'>
-                        {{ data|safe }}
-                    </div>
-                </div>
-                <div class='mt-3 h-25 d-flex justify-content-center container'>
-                    <button type='button' class='w-50 align-self-center btn btn-success btn-lg'>
-                        <a href='/titanic/download' target='_blank' download='predictions_titanic.csv' style='color:white;'>Download</a>
-                    </button>
-                </div>
-            </div>
+        {% else %}
+        <div class='p-2 h-75 table-responsive border border-secondary shadow-lg' style='overflow:auto;'>
+            <table>{{data|safe}}</table>
         </div>
 
         {% endif %}
+
     </div>
-</div>
 {% endblock %}

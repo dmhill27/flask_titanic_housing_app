@@ -19,10 +19,6 @@ def housing():
         return render_template('housing.html', data=data.to_html(justify='center', classes='table table-striped table-bordered table-hover table-sm'))
     return render_template('housing.html')
 
-@app.route('/housing/download')
-def housing_download():
-    return send_file('predictions_housing.csv', attachment_filename='predictions_housing.csv')
-
 @app.route('/titanic', methods=['GET','POST'])
 def titanic():
     if request.method == 'POST':
@@ -31,10 +27,6 @@ def titanic():
         data.to_csv('predictions_titanic.csv')
         return render_template('titanic.html', data=data.to_html(justify='center', classes='table table-striped table-bordered table-hover table-sm'))
     return render_template('titanic.html')
-
-@app.route('/titanic/download')
-def titanic_download():
-    return send_file('predictions_titanic.csv', attachment_filename='predictions_titanic.csv')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
